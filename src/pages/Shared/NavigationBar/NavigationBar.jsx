@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const NavigationBar = () => {
+
+  const {user} =useContext(AuthContext);
+
     return (
         <div>
             <div className="navbar bg-primary-focus">
@@ -15,6 +19,9 @@ const NavigationBar = () => {
             </li>
             <li>
             <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+            <Link to="">{user.displayName}</Link>
             </li>
             <li>
             <Link to="/login/login">Login</Link>

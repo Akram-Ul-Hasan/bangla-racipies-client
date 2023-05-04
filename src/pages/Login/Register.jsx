@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+
+    const {createUser} = useContext(AuthContext)
 
     const handleRegister = event =>{
         event.preventDefault();
@@ -9,7 +13,17 @@ const Register = () => {
         const photoUrl = form.photoUrl.value;
         const email = form.email.value;
         const password = form.password.value;
+
         console.log(name, photoUrl, email, password);
+
+        createUser(email, password)
+        .then(result =>{
+            const createdUser = result.user;
+            console.log(createdUser);
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
     }  
 
 
@@ -65,15 +79,16 @@ const Register = () => {
                   placeholder="Enter password"
                   className="input input-bordered" required
                 />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
+                
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Register</button>
               </div>
+              <label className="label text-left">
+                <p className="label-text-alt">
+                Already have an Account?
+                <Link to="/login/login" className="link link-hover"> Login</Link></p>
+              </label>
             </form>
           </div>
         </div>
