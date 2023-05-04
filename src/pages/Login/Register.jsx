@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
-
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
     const {createUser} = useContext(AuthContext)
 
     const handleRegister = event =>{
         event.preventDefault();
+        setSuccess('');
+        setError('');
         const form = event.target;
         const name = form.name.value;
         const photoUrl = form.photoUrl.value;
@@ -16,13 +19,38 @@ const Register = () => {
 
         console.log(name, photoUrl, email, password);
 
+        if(!/(?=.*[A-Z])/.test(password))
+        {
+            setError("Please add at least one upper case  letter.");
+            return ;
+        }
+        else if(!/(?=.*[a-z])/.test(password)){
+            setError("Please add at least one lower case  letter.")
+            return ;
+        }
+        else if(!/(?=.*[0-9])/.test(password))
+        {
+            setError("Please add at least one number.");
+            return ;
+        }
+        else if(password.length< 6)
+        {
+            setError("Password should be at least 6 character");
+            return ;
+        }
+
         createUser(email, password)
         .then(result =>{
             const createdUser = result.user;
             console.log(createdUser);
+            setError('');
+            event.target.reset();
+            setSuccess('User has been created successfully!');
         })
         .catch(error => {
             console.log(error.message);
+            setError(error.message);
+            
         })
     }  
 
@@ -74,7 +102,7 @@ const Register = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   placeholder="Enter password"
                   className="input input-bordered" required
@@ -90,6 +118,9 @@ const Register = () => {
                 <Link to="/login/login" className="link link-hover"> Login</Link></p>
               </label>
             </form>
+            <p className="text-error ms-10 mb-5">{error}</p>
+            <p className="text-success ms-10 mb-5">{success}</p>
+
           </div>
         </div>
       </div>

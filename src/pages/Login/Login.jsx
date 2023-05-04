@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const [error, setError] = useState('');
   const { signIn } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -16,9 +17,11 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.message);
+        setError(error.message);
       });
   };
 
@@ -49,7 +52,7 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   placeholder="Enter password"
                   className="input input-bordered"
@@ -69,6 +72,8 @@ const Login = () => {
                 </p>
               </label>
             </form>
+            <p className="text-error ms-10 mb-5">{error}</p>
+
           </div>
         </div>
       </div>
