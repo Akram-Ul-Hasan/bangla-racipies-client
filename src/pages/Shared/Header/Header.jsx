@@ -1,12 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "../NavigationBar/NavigationBar";
-
+import logo from '../../../assets/lily-banse--YHSwy6uqvk-unsplash.jpg'
 const Header = () => {
   return (
     <div>
-      <h3>This is header+slider</h3>
       <NavigationBar></NavigationBar>
+
+
+      <div
+        className="hero min-h-screen"
+        style={{
+          backgroundImage: `url(${logo})`,
+        }}
+      >
+        <div className="hero-overlay bg-opacity-40"></div>
+        <div className="hero-content text-center text-neutral-content">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+            <p className="mb-5">
+              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
+              et a id nisi.
+            </p>
+            <button className="btn btn-primary">Get Started</button>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   );
 };
