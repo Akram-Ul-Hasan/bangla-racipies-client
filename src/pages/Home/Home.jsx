@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import Card from "./Card";
+import FoodCatagory from "./FoodCatagory";
 
 const Home = () => {
   const chefs = useLoaderData();
@@ -12,6 +13,7 @@ const Home = () => {
           <Card key={chef.id} chef={chef}></Card>
         ))}
       </div>
+      <FoodCatagory></FoodCatagory>
     </div>
   );
 };
