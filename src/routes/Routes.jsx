@@ -19,7 +19,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/chef/:id',
-                element: <ChefDetails></ChefDetails>
+                element: <ChefDetails></ChefDetails>,
+                loader: ({params}) => fetch(`https://bangla-recipes-server-akram-ul-hasan.vercel.app/chef/${params.id}`)
             },
             {
                 path: '/blog',
