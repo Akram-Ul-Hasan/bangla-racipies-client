@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import ActiveLink from "./ActiveLink";
 
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -20,10 +21,10 @@ const NavigationBar = () => {
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to="/">Home</Link>
+              <ActiveLink to="/">Home</ActiveLink>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <ActiveLink to="/blog">Blog</ActiveLink>
             </li>
             <li></li>
             {user && (
@@ -38,10 +39,10 @@ const NavigationBar = () => {
             ) : (
               <>
                 <li>
-                  <Link to="/login/login">Login</Link>
+                  <ActiveLink to="/login/login">Login</ActiveLink>
                 </li>
                 <li>
-                  <Link to="/login/register">Register</Link>
+                  <ActiveLink to="/login/register">Register</ActiveLink>
                 </li>
               </>
             )}
