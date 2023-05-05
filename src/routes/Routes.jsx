@@ -7,6 +7,7 @@ import Register from "../pages/Login/Register";
 import LoginLayout from "../layouts/LoginLayout";
 import ChefDetails from "../pages/ChefDetails/ChefDetails";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/chef/:id",
-        element: <ChefDetails></ChefDetails>,
+        element:  <PrivateRoute><ChefDetails></ChefDetails></PrivateRoute>,
         loader: ({ params }) =>
           fetch(
             `https://bangla-recipes-server-akram-ul-hasan.vercel.app/chef/${params.id}`

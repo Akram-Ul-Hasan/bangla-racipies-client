@@ -8,9 +8,15 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 const AuthProvider = ({children}) => {
+
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+
+
 
     const createUser = (email, password) =>{
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
@@ -21,24 +27,29 @@ const AuthProvider = ({children}) => {
     }
 
     const signIn =(email,password) =>{
+        setLoading(true);
         return signInWithEmailAndPassword( auth, email, password);
     }
     
     const logOut = () => {
+        setLoading(true);
         return signOut(auth);
     }
 
     const googleSignIn = () => {
+        setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
     
     const githubSignIn = () => {
+        setLoading(true);
         return signInWithPopup(auth, githubProvider);
     }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, loggedUser => {
             console.log('logged in user inside auth state observer: ', loggedUser)
             setUser(loggedUser);
+            setLoading(false);
         })
         return () => {
             unsubscribe();
@@ -49,6 +60,7 @@ const AuthProvider = ({children}) => {
         createUser, 
         signIn,
         logOut,
+        loading,
         googleSignIn,
         githubSignIn,
         setDisplayNamePhotoUrl

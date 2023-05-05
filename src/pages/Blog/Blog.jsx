@@ -1,11 +1,16 @@
 import React from "react";
 
 const Blog = () => {
+
+
+  
   return (
     <div>
-      <h4>This is blog page</h4>
-      <div>
-        <h4>1. Difference between uncontrolled and controlled component.</h4>
+
+<div className="border m-10 p-10 rounded-lg">
+      <h4 className="text-3xl mb-10 ">Here are some question-answer.</h4>
+      <div className="my-10 mx-5">
+        <h4 className="text-2xl font-bold mb-5">1. Difference between uncontrolled and controlled component.</h4>
         <p>
           a controlled component is a React component that is managed by its
           parent component, while an uncontrolled component is a component that
@@ -30,8 +35,8 @@ const Blog = () => {
           the parent component.
         </p>
       </div>
-      <div>
-        <h4>2. How to validate react props using probTypes?</h4>
+      <div className="my-10 mx-5">
+        <h4 className="text-2xl font-bold mb-5">2. How to validate react props using probTypes?</h4>
         <p>
           PropTypes is a feature in React that allows you to validate the props
           being passed to a component, ensuring that they meet the expected type
@@ -60,8 +65,8 @@ const Blog = () => {
           development process.
         </p>
       </div>
-      <div>
-        <h4>3. Difference between node.js and express.js</h4>
+      <div className="my-10 mx-5">
+        <h4 className="text-2xl font-bold mb-5">3. Difference between node.js and express.js</h4>
         <p>
           Node.js and Express.js are both popular technologies used in web
           development, but they have different roles.
@@ -93,8 +98,8 @@ const Blog = () => {
           building web applications and APIs.
         </p>
       </div>
-      <div>
-        <h4>What is custom hook and why will you create a custom hook?</h4>
+      <div className="my-10 mx-5">
+        <h4 className="text-2xl font-bold mb-5">What is custom hook and why will you create a custom hook?</h4>
         <p>
           A custom hook in React is a reusable piece of stateful logic that is
           extracted from a component and defined as a standalone function.
@@ -123,6 +128,8 @@ const Blog = () => {
           modular and maintainable.
         </p>
       </div>
+    </div>
+
     </div>
   );
 };

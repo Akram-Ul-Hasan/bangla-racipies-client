@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
   const [error, setError] = useState("");
   const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -17,7 +20,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -27,24 +30,26 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     googleSignIn()
-    .then( result => {
-      const user = result.user;
-      console.log(user);
-    })
-    .catch( error => {
-      console.log(error.message);
-    })
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   const handleGithubSignIn = () => {
     githubSignIn()
-    .then(result => {
-      const user = result.user;
-      console.log(user);
-    })
-    .catch(error=>{
-      console.log(error.message);
-    })
-  }
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <div>
@@ -105,7 +110,12 @@ const Login = () => {
               >
                 Google
               </button>
-              <button onClick={handleGithubSignIn} className="btn btn-outline btn-info">Github</button>
+              <button
+                onClick={handleGithubSignIn}
+                className="btn btn-outline btn-info"
+              >
+                Github
+              </button>
             </div>
           </div>
         </div>
