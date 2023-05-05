@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "../NavigationBar/NavigationBar";
-import logo from '../../../assets/lily-banse--YHSwy6uqvk-unsplash.jpg'
+import logo from "../../../assets/lily-banse--YHSwy6uqvk-unsplash.jpg";
 const Header = () => {
   return (
     <div>
       <NavigationBar></NavigationBar>
-
 
       <div
         className="hero min-h-screen"
@@ -27,8 +26,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-
     </div>
   );
 };

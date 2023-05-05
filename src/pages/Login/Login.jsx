@@ -4,7 +4,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signIn, googleSignIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleLogin = (event) => {
     event.preventDefault();
@@ -35,6 +35,16 @@ const Login = () => {
       console.log(error.message);
     })
   };
+  const handleGithubSignIn = () => {
+    githubSignIn()
+    .then(result => {
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(error=>{
+      console.log(error.message);
+    })
+  }
 
   return (
     <div>
@@ -95,8 +105,7 @@ const Login = () => {
               >
                 Google
               </button>
-              <button className="btn btn-outline btn-info">Github</button>
-              {/* <button className="btn btn-outline btn-info">Facebook</button> */}
+              <button onClick={handleGithubSignIn} className="btn btn-outline btn-info">Github</button>
             </div>
           </div>
         </div>
