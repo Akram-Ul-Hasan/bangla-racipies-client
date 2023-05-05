@@ -77,8 +77,8 @@ const NavigationBar = () => {
             </li>
             <li></li>
             {user && (
-              <li>
-                <Link to="">{user?.displayName}</Link>
+              <li className="tooltip tooltip-bottom" data-tip={user.displayName}>
+                <Link to=""><img className="w-10 rounded-full" src={user?.photoURL} alt="" /></Link>
               </li>
             )}
             {user ? (
