@@ -5,7 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const {createUser} = useContext(AuthContext)
+    const {createUser, setDisplayNamePhotoUrl} = useContext(AuthContext)
 
     const handleRegister = event =>{
         event.preventDefault();
@@ -51,6 +51,13 @@ const Register = () => {
             console.log(error.message);
             setError(error.message);
             
+        })
+
+        setDisplayNamePhotoUrl(name, photoUrl)
+        .then(()=>{
+        })
+        .catch(error =>{
+          console.log(error.message)
         })
     }  
 

@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
-  const [error, setError] = useState('');
-  const { signIn } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const { signIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleLogin = (event) => {
     event.preventDefault();
@@ -23,6 +23,17 @@ const Login = () => {
         console.log(error.message);
         setError(error.message);
       });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+    .then( result => {
+      const user = result.user;
+      console.log(user);
+    })
+    .catch( error => {
+      console.log(error.message);
+    })
   };
 
   return (
@@ -71,9 +82,22 @@ const Login = () => {
                   </Link>
                 </p>
               </label>
+              <label className="label text-center mt-3">
+                <p className="label-text-alt">or use one of this options</p>
+              </label>
             </form>
-            <p className="text-error ms-10 mb-5">{error}</p>
+            <p className="text-error ms-10 ">{error}</p>
 
+            <div className="mx-7 mb-7 flex flex-col gap-3">
+              <button
+                onClick={handleGoogleSignIn}
+                className="btn btn-outline btn-info"
+              >
+                Google
+              </button>
+              <button className="btn btn-outline btn-info">Github</button>
+              {/* <button className="btn btn-outline btn-info">Facebook</button> */}
+            </div>
           </div>
         </div>
       </div>

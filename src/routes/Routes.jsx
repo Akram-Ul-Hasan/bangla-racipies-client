@@ -5,6 +5,7 @@ import Blog from "../pages/Blog/Blog";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
 import LoginLayout from "../layouts/LoginLayout";
+import ChefDetails from "../pages/ChefDetails/ChefDetails";
 
 const router = createBrowserRouter([
     {
@@ -13,7 +14,12 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home></Home>,
+                loader: ()=> fetch(`https://bangla-recipes-server-akram-ul-hasan.vercel.app/chefs`)
+            },
+            {
+                path: '/chef/:id',
+                element: <ChefDetails></ChefDetails>
             },
             {
                 path: '/blog',
